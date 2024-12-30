@@ -2,6 +2,8 @@ package demo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javax.naming.CommunicationException;
 import sienens.BurgerSelfOrderKiosk;
 import urjc.UrjcBankServer;
@@ -11,10 +13,13 @@ import urjc.UrjcBankServer;
  * @author jvelez 
 */
 class BurgerSelfOrderKioskManager {
-    BurgerSelfOrderKiosk dispenser = new BurgerSelfOrderKiosk();    
+    BurgerSelfOrderKiosk dispenser = new BurgerSelfOrderKiosk();
     
     UrjcBankServer bank = new UrjcBankServer();
     int mode = 0;
+    
+    private Locale currentLocale = new Locale("es", "ES"); // Idioma por defecto: Español
+    private ResourceBundle messages = ResourceBundle.getBundle("demo.messages", currentLocale);
     
     private void clear() {
         dispenser.setTitle(null);//OCULTA EL TITULO
@@ -25,33 +30,48 @@ class BurgerSelfOrderKioskManager {
             dispenser.setOption(cont, null);//LIMPIA EL BOTON DE LA POSICIÓN cont
     }
     
+    private void loadLanguage(String languageCode, String countryCode) {
+        currentLocale = new Locale(languageCode, countryCode);
+        messages = ResourceBundle.getBundle("messages", currentLocale);
+    }
+    
     
     void run() {
         
         final int waitTime = 300;
         
         while(true) {
-            //INTERFAZ PRINCIPAL
-            clear();// LIMPIAR EL INTERFAZ 
+            // Interfaz principal
+            clear();
             dispenser.setMenuMode();
-            dispenser.setTitle("URJC Burger - Bienvenido");//PONE EL TITULO A LA VENTANA
-            dispenser.setImage("Logo.png");// PRESENTA IMAGEN
-            dispenser.setOption(1, "Nuevo pedido");// AÑADE UNA OPCION EN EL MENU PRINCIPAL EN EL BOTON 1
-            dispenser.setOption(4, "Cambiar idioma");// AÑADE UNA OPCION EN EL MENU PRINCIPAL EN EL BOTON 4            
-            char respuestaInterfaz = dispenser.waitEvent(waitTime);//ESPERA A QUE EL USARIO INTERACTUE CON EL INTEFAZ Y DEVUELVE LO QUE EL USARIO HA ECHO CON EL INTERFAZ (QUE BOTON SE PULSA, ETC..) 
-            System.out.println(respuestaInterfaz);
+            dispenser.setTitle(messages.getString("app.title"));
+            dispenser.setImage("Logo.png");
+            dispenser.setOption(1, messages.getString("menu.new_order"));
+            dispenser.setOption(4, messages.getString("menu.change_language"));
+            char respuestaInterfaz = dispenser.waitEvent(waitTime);
             
-            //INTERFAZ CAMBIAR IDIOMA
-            clear();// LIMPIAR EL INTERFAZ 
-            dispenser.setImage("Logo.png");// PRESENTA IMAGEN
-            dispenser.setTitle("Seleccione idioma");//PONE EL TITULO A LA VENTANA
-            dispenser.setOption(0, "ESPAÑOL");// AÑADE UNA OPCION EN EL MENU PRINCIPAL EN EL BOTON 0   
-            dispenser.setOption(1, "INGLES");// AÑADE UNA OPCION EN EL MENU PRINCIPAL EN EL BOTON 1
-            dispenser.setOption(2, "ALEMAN");// AÑADE UNA OPCION EN EL MENU PRINCIPAL EN EL BOTON 2          
-            dispenser.setOption(3, "...");// AÑADE UNA OPCION EN EL MENU PRINCIPAL EN EL BOTON 3  
-            dispenser.setDescription("ESTOS IDIOMAS NO SON ALGO FIJO DE ESTA APLICACIÓN.\nSE CARGAN DINAMICAMENTE LOS POSIBLES IDIOMAS.\nLOS POSIBLES IDIOMAS DE LA APP SON LOS FICHEROS QUE ENCUENTRE EN UNA CARPETA DE DICCIONARIOS.");//AÑADE UNA DESCRIPCION 
-            respuestaInterfaz = dispenser.waitEvent(waitTime);//ESPERA A QUE EL USARIO INTERACTUE CON EL INTEFAZ Y DEVUELVE LO QUE EL USARIO HA ECHO CON EL INTERFAZ (QUE BOTON SE PULSA, ETC..)
-            System.out.println(respuestaInterfaz);
+
+            // Comprobar selección
+            if (respuestaInterfaz == 'e') { // Si selecciona "Cambiar idioma"
+                clear();
+                dispenser.setImage("Logo.png");
+                dispenser.setTitle(messages.getString("menu.select_language"));
+                dispenser.setOption(0, "Español");
+                dispenser.setOption(1, "English");
+                dispenser.setOption(2, "Deutsch");
+                dispenser.setDescription(messages.getString("menu.language_description"));
+                respuestaInterfaz = dispenser.waitEvent(waitTime);
+                System.out.println(respuestaInterfaz);
+
+                // Cambiar idioma según selección
+                if (respuestaInterfaz == '0') {
+                    loadLanguage("es", "ES");
+                } else if (respuestaInterfaz == '1') {
+                    loadLanguage("en", "US");
+                } else if (respuestaInterfaz == '2') {
+                    loadLanguage("de", "DE");
+                }
+            }
 
             //INTERFAZ PRINCIPAL
             clear();// LIMPIAR EL INTERFAZ 
