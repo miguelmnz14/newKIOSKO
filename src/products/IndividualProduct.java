@@ -1,6 +1,6 @@
-package Products;
+package products;
 
-public class IndividualProduct implements Products{
+public class IndividualProduct implements Product{
     private String name;
     private String description;
     private String imageFileName;
@@ -19,6 +19,7 @@ public class IndividualProduct implements Products{
         return name;
     }
 
+    //los setters hacen desaparecer la encapsulación, puede que no los necesitemos
     public void setName(String name) {
         this.name = name;
     }

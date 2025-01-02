@@ -1,11 +1,11 @@
-package Products;
+package products;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
     private int orderNumber;
-    private List<Products> products;
+    private List<Product> products;
 
 
     public int getOrderNumber() {
@@ -17,7 +17,7 @@ public class Order {
             return "Order number: " + orderNumber + "- No products in this order";
         }
         StringBuilder productList = new StringBuilder();
-        for (Products p : products){
+        for (Product p : products){
             if (productList.length()>0){
                 productList.append(",");
             }
@@ -29,15 +29,15 @@ public class Order {
 
     public int getTotalAmount(){
         int totalAmount = 0;
-        for (Products p : products){
+        for (Product p : products){
             totalAmount += p.getPrice();
         }
         return totalAmount;
     }
-    public void addProduct(Products p){
+    public void addProduct(Product p){
         if (this.products == null)
         {
-            this.products = new ArrayList<Products>();
+            this.products = new ArrayList<Product>();
         }
         
         this.products.add(p);

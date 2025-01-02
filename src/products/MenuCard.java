@@ -2,16 +2,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Products;
+package products;
 
+import java.beans.XMLDecoder;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.List;
 
 /**
  *
  * @author Sergio
  */
+
+
 public class MenuCard {
     private List<MenuCardSection> sectionList;
+    
+    
     
     public MenuCardSection getSection(int index){
         if (index < 0 || index >= this.sectionList.size())
@@ -34,7 +41,19 @@ public class MenuCard {
         }
     }
     
-    public static MenuCard loadFromDisk(){
+    public static MenuCard deserializeMenuCard() {
+        MenuCard menu = null;
+        try {
+            XMLDecoder decoder = new XMLDecoder(
+                                                new FileInputStream("src/Catalog.xml"));
+            menu = (MenuCard) decoder.readObject();
+            decoder.close();
+            
+        } catch(FileNotFoundException fileNotFound){
+            System.out.println(fileNotFound.getMessage());
+            
+        }
+        return menu;
         
     }
 

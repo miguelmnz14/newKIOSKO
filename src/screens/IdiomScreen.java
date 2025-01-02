@@ -31,7 +31,7 @@ public class IdiomScreen implements Screen{
         botonEspanol.addActionListener(e -> {
             JOptionPane.showMessageDialog(frame, "Idioma seleccionado: Español");
             frame.dispose(); // Cerrar la pantalla actual
-            new WellcomeScreen().show(); // Regresar a la pantalla principal
+            new WelcomeScreen().show(); // Regresar a la pantalla principal
         });
         panel.add(botonEspanol);
 
@@ -41,7 +41,7 @@ public class IdiomScreen implements Screen{
         botonIngles.addActionListener(e -> {
             JOptionPane.showMessageDialog(frame, "Idioma seleccionado: English");
             frame.dispose(); // Cerrar la pantalla actual
-            new WellcomeScreen().show(); // Regresar a la pantalla principal
+            new WelcomeScreen().show(); // Regresar a la pantalla principal
         });
         panel.add(botonIngles);
     }

@@ -1,16 +1,18 @@
-package demo;
+package manager;
+
+
 
 /**
  *
  * @author jvelez
  */
-public class BurgerSelfOrderKioskExample {
+public class BurgerSelfOrderKiosk {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        BurgerSelfKioskNew atm = new BurgerSelfKioskNew();
+        KioskManager atm = new KioskManager();
         atm.run();
     }
     

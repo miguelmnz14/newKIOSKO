@@ -1,25 +1,25 @@
-package Products;
+package products;
 
 import java.util.List;
 
-public class Menu implements Products{
+public class Menu implements Product{
     private static int discount = 5; // Descuento se lee del fichero de cofiguracion
-    private List<IndividualProduct> products;
+    private List<IndividualProduct> productos;
 
 
     public IndividualProduct getProduct(int id){
-        return products.get(id);
+        return productos.get(id);
     }
 
 
     public int getNumProducts(){
-        return products.size();
+        return productos.size();
     }
 
     @Override
     public String getName(){
         String names = "";
-        for (IndividualProduct p : products){
+        for (IndividualProduct p : productos){
             if (!names.isEmpty()){
                 names += ", ";
             }
@@ -31,7 +31,7 @@ public class Menu implements Products{
     @Override
     public int getPrice(){
         int priceTotal = 0;
-        for (IndividualProduct p : products){
+        for (IndividualProduct p : productos){
             priceTotal += p.getPrice();
         }
         return priceTotal;

@@ -1,10 +1,11 @@
 package screens;
 
 import javax.swing.*;
+import manager.Context;
 
-public class WellcomeScreen implements Screen{
+public class WelcomeScreen implements KioskScreen{
 
-    public void show() {
+    public KioskScreen show(Context context) {
         // Crear el marco principal (ventana)
         JFrame frame = new JFrame("Inicio");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -17,8 +18,9 @@ public class WellcomeScreen implements Screen{
 
         // Hacer visible la ventana
         frame.setVisible(true);
+        return this;
     }
-    @Override
+    
     public void colocarComponentes(JPanel panel, JFrame frame) {
         panel.setLayout(null); // Diseño absoluto
 

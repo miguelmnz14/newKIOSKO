@@ -12,8 +12,7 @@ import urjc.UrjcBankServer;
  *
  * @author jvelez 
 */
-class BurgerSelfKioskNew {
-    BurgerSelfOrderKiosk dispenser = new BurgerSelfOrderKiosk();
+class BurguerSelfOrderKioskManagerNew{
     
     UrjcBankServer bank = new UrjcBankServer();
     int mode = 0;
