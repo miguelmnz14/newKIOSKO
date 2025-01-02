@@ -5,7 +5,11 @@
         <group>
             <file>file:/C:/Users/Miguel/Desktop/Kiosko/src/manager/Context.java</file>
             <file>file:/C:/Users/Miguel/Desktop/Kiosko/src/manager/BurgerSelfOrderKiosk.java</file>
+            <file>file:/C:/Users/Miguel/Desktop/Kiosko/src/manager/TranslatorManager.java</file>
+            <file>file:/C:/Users/Miguel/Desktop/Kiosko/src/screens/WelcomeScreen.java</file>
             <file>file:/C:/Users/Miguel/Desktop/Kiosko/src/manager/KioskManager.java</file>
+            <file>file:/C:/Users/Miguel/Desktop/Kiosko/src/products/Order.java</file>
+            <file>file:/C:/Users/Miguel/Desktop/Kiosko/src/products/Product.java</file>
         </group>
     </open-files>
 </project-private>

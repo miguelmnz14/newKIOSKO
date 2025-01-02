@@ -15,7 +15,7 @@ public class KioskManager {
     
     public void run(){
         MenuCard menuCard = null;
-        SimpleKiosk kiosko = null;
+        SimpleKiosk kiosko = new SimpleKiosk();
         Context contexto = new Context(
             kiosko,
             new TranslatorManager(),

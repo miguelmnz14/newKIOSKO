@@ -2,48 +2,40 @@ package screens;
 
 import javax.swing.*;
 import java.awt.*;
+import manager.Context;
+import manager.SimpleKiosk;
 
-public class IdiomScreen implements Screen{
-    public void show(){
-        // Crear el marco principal (ventana)
-        JFrame frame = new JFrame("Select Idiom");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(600, 700);
+public class IdiomScreen implements KioskScreen{
+    public KioskScreen show(Context context){
+        SimpleKiosk dispenser = context.getKiosk();
+        
+        final int waitTime = 300;
+        dispenser.clear();
+        dispenser.getKiosk().setMenuMode();
+        dispenser.getKiosk().setTitle(context.getTranslator().translate("app.title"));
+        dispenser.getKiosk().setImage("Logo.png");
+        this.configureScreenButtons(dispenser, context);
+        char respuestaInterfaz = dispenser.getKiosk().waitEvent(waitTime);
+        System.out.println(respuestaInterfaz);
 
-        JPanel panel = new JPanel();
-        frame.add(panel);
-        colocarComponentes(panel, frame);
-
-        frame.setVisible(true);
+        // Cambiar idioma según selección
+        if (respuestaInterfaz == 'A') {
+            context.getTranslator().setCurrentIdiom("Espanol");
+        } else if (respuestaInterfaz == 'B') {
+            context.getTranslator().setCurrentIdiom("Ingles");
+        } else if (respuestaInterfaz == 'C') {
+            context.getTranslator().setCurrentIdiom("Aleman");
+        }
+        WelcomeScreen welcomeScreen = new WelcomeScreen();
+        welcomeScreen.show(context);
+        return this;
     }
 
-    @Override
-    public void colocarComponentes(JPanel panel, JFrame frame) {
-        panel.setLayout(null); // Diseño absoluto
-
-        JLabel label = new JLabel("Selecciona un idioma:");
-        label.setBounds(50, 20, 200, 25);
-        panel.add(label);
-
-        // Botón para Español
-        JButton botonEspanol = new JButton("Español");
-        botonEspanol.setBounds(50, 60, 100, 25);
-        botonEspanol.addActionListener(e -> {
-            JOptionPane.showMessageDialog(frame, "Idioma seleccionado: Español");
-            frame.dispose(); // Cerrar la pantalla actual
-            new WelcomeScreen().show(); // Regresar a la pantalla principal
-        });
-        panel.add(botonEspanol);
-
-        // Botón para Inglés
-        JButton botonIngles = new JButton("English");
-        botonIngles.setBounds(200, 60, 100, 25);
-        botonIngles.addActionListener(e -> {
-            JOptionPane.showMessageDialog(frame, "Idioma seleccionado: English");
-            frame.dispose(); // Cerrar la pantalla actual
-            new WelcomeScreen().show(); // Regresar a la pantalla principal
-        });
-        panel.add(botonIngles);
+    
+    public void configureScreenButtons(SimpleKiosk dispen, Context contexto) {
+        dispen.getKiosk().setOption(0, "Español");
+        dispen.getKiosk().setOption(1, "English");
+        dispen.getKiosk().setOption(2, "Deutsch");
     }
 }
 

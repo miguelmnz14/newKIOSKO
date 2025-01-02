@@ -12,15 +12,21 @@ import sienens.BurgerSelfOrderKiosk;
  * @author Miguel
  */
 public class SimpleKiosk {
-    private BurgerSelfOrderKiosk kiosk;
+    private BurgerSelfOrderKiosk kioskDefault = new BurgerSelfOrderKiosk();  
     
     
-    private void clear() {
-        kiosk.setTitle(null);//OCULTA EL TITULO
-        kiosk.setImage(null);//OCULTA LA IAMGEN
-        kiosk.setDescription(null);//OCULTA LA DESCRIPCION
+    public void clear() {
+        kioskDefault.setTitle(null);//OCULTA EL TITULO
+        kioskDefault.setImage(null);//OCULTA LA IAMGEN
+        kioskDefault.setDescription(null);//OCULTA LA DESCRIPCION
         
         for (int cont = 0; cont < 8; cont++) //OCULTA TODOS LOS BOTONES DEL INTERFAZ
-            kiosk.setOption(cont, null);//LIMPIA EL BOTON DE LA POSICIÓN cont
+            kioskDefault.setOption(cont, null);//LIMPIA EL BOTON DE LA POSICIÓN cont
     }
+
+    public BurgerSelfOrderKiosk getKiosk() {
+        return kioskDefault;
+    }
+    
+    
 }
