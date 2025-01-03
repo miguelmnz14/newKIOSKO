@@ -31,9 +31,24 @@ public class Context {
         this.kiosk = kiosk;
         this.translator = translator;
         this.order = order;
-        this.menuCard = menuCard;
+        this.menuCard = menuCard.deserializeMenuCard();
+    }
+
+    public int getKioskNumber() {
+        return kioskNumber;
     }
     
+    public void previousKiosk(){
+        this.kioskNumber -= 1;
+    }
+    
+    public void nextKiosk(){
+        this.kioskNumber += 1;
+    }
+    
+    public void nextOrder(){
+        this.orderNumber += 1;
+    }
     
 
     public SimpleKiosk getKiosk() {

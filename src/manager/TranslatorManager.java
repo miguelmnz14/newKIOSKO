@@ -33,7 +33,7 @@ public class TranslatorManager {
         dictionaries.put("Espanol", new Translator("demo/messages_es.properties"));
         dictionaries.put("Ingles", new Translator("demo/messages_en.properties"));
         dictionaries.put("Aleman", new Translator("demo/messages_ge.properties"));
-        currentDictionary = new Translator("demo/messages_en.properties");
+        currentDictionary = new Translator("demo/messages_es.properties");
 
     }
     
