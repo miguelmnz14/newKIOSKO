@@ -10,6 +10,7 @@ public class MenuCardSection {
     private String sectionName;
     private String imageFileName;
     private List<IndividualProduct> productList;
+    private int current;
     
     
     public IndividualProduct getProduct(int i){ // Funcion que devuelve el productoIndividual de mi lista 
@@ -23,6 +24,19 @@ public class MenuCardSection {
     public String getSectionName(){
         return sectionName;
     }
+
+    public int getCurrent() {
+        return current;
+    }
+    
+    public void nextProd(){
+        this.current += 1;
+    }
+    
+    public void previousProd(){
+        this.current -= 1;
+    }
+    
     public int getNumberOfProducts(){
      if (this.productList == null)
      {

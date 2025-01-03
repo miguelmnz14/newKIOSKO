@@ -29,6 +29,9 @@ public class SectionScreen extends CarouselScreen{
         
         
         switch (respuestaInterfaz){
+            case 'E':
+                ProductScreen ps = new ProductScreen();
+                ps.show(context);
             case 'F':
                 OrderScreen os = new OrderScreen();
                 os.show(context);

@@ -24,7 +24,7 @@ public class Context {
     private Order order;
     private MenuCard menuCard;
     private int orderNumber;
-    private int kioskNumber;
+    private int kioskNumber; //para numero de seccion
     private int numberofKiosk;
 
     public Context(SimpleKiosk kiosk, TranslatorManager translator, Order order, MenuCard menuCard) {
@@ -71,6 +71,11 @@ public class Context {
         return orderNumber;
     }
 
+    public int getNumberofKiosk() {
+        return numberofKiosk;
+    }
+
+    
     
 
     

@@ -14,7 +14,7 @@ public class Order {
 
     public String getOrderText(){ // Funcion que muestra el nombre de los productos que tiene un pedido
         if (products == null || products.isEmpty()){
-            return "Order number: " + orderNumber + "- No products in this order";
+            return "\n- No products in this order\n";
         }
         StringBuilder productList = new StringBuilder();
         for (Product p : products){
@@ -24,11 +24,14 @@ public class Order {
             productList.append(p.getName());
             
         }
-        return "Order number: "+ orderNumber + " -Products: " + productList;
+        return " \n-Products: " + productList;
     }
 
     public int getTotalAmount(){
         int totalAmount = 0;
+        if (this.products == null){
+            return 0;
+        }
         for (Product p : products){
             totalAmount += p.getPrice();
         }
