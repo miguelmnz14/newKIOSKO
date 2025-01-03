@@ -8,6 +8,7 @@ import sienens.BurgerSelfOrderKiosk;
 public class WelcomeScreen implements KioskScreen{
 
     
+    @Override
     public KioskScreen show(Context context){
         SimpleKiosk dispenser = context.getKiosk();
         

@@ -17,6 +17,7 @@ import java.util.List;
 
 public class MenuCard {
     private List<MenuCardSection> sectionList;
+    private int current;
     
     
     

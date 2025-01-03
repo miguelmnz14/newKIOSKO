@@ -14,6 +14,7 @@ import manager.SimpleKiosk;
  * @author Miguel
  */
 public class SectionScreen extends CarouselScreen{
+    
     public KioskScreen show(Context context){
         SimpleKiosk dispenser = context.getKiosk();
         
