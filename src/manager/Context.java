@@ -31,7 +31,7 @@ public class Context {
         this.kiosk = kiosk;
         this.translator = translator;
         this.order = order;
-        this.menuCard = menuCard.deserializeMenuCard();
+        this.menuCard = menuCard;
     }
 
     public int getKioskNumber() {
@@ -75,6 +75,9 @@ public class Context {
         return numberofKiosk;
     }
 
+    public void newOrder(){
+        this.order = new Order();
+    }
     
     
 

@@ -34,12 +34,11 @@ public class MenuScreen extends CarouselScreen{
         
         switch (respuestaInterfaz){
             case 'E' -> {
-                
+                context.getOrder().addProduct(context.getMenuCard().getSection(this.section).getProduct(currentProduct));
                 if (this.section + 1 >= context.getMenuCard().getNumberOfSections()){
                     OrderScreen os = new OrderScreen();
                     os.show(context);
                 } else{
-                    context.getOrder().addProduct(context.getMenuCard().getSection(this.section).getProduct(currentProduct));
                     context.nextKiosk();
                     MenuScreen ms = new MenuScreen();
                     ms.show(context);
