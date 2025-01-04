@@ -16,7 +16,7 @@ import products.Product;
  * @author Miguel
  */
 public class ProductScreen extends CarouselScreen{
-    private int section;
+    private int section; //variable para saber en la seccion en la que nos encontramos
     
     
     public KioskScreen show(Context context){
@@ -62,6 +62,7 @@ public class ProductScreen extends CarouselScreen{
         disp.getKiosk().setOption(5, context.getTranslator().translate("order.cancel"));
     }
     
+    @Override
     protected void adjustCarruselButtons(int currentElement, int numberOfElements, SimpleKiosk dispen){
         boolean first = currentElement == 0;
         boolean last = currentElement == numberOfElements -1;

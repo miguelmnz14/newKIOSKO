@@ -21,6 +21,8 @@ import urjc.UrjcBankServer;
  * @author Sergio
  */
 public class PurchaseScreen implements KioskScreen{
+    private UrjcBankServer bank = new UrjcBankServer();
+    @Override
     public KioskScreen show(Context context){
         SimpleKiosk sk = context.getKiosk();
         
@@ -29,12 +31,15 @@ public class PurchaseScreen implements KioskScreen{
         final int waitTime = 300;
         this.configureScreenButtons(sk, context);
         long cardnum = sk.getKiosk().getCardNumber();
-        UrjcBankServer bank = new UrjcBankServer();
-        if (bank.comunicationAvaiable()){
+        System.out.println(cardnum);
+
+        
+        if (this.bank.comunicationAvaiable()){
             String desc = context.getOrder().getOrderText();
             int cant = context.getOrder().getTotalAmount();
             sk.getKiosk().setDescription(String.format("Introduzca tarjeta para comprar %s por %d €", desc, cant));
-            char RespuestaInterfaz = sk.getKiosk().waitEvent(waitTime);
+            //Fallo aqui abajo
+            char RespuestaInterfaz = sk.getKiosk().waitEvent(waitTime);          
             System.out.println(RespuestaInterfaz);
             
             
@@ -43,18 +48,27 @@ public class PurchaseScreen implements KioskScreen{
                     this.writerOrderToFile(context);
                     this.incrementOrderNumber(context);
                     System.out.println(context.getOrder().getOrderText() + " - Total " + context.getOrder().getTotalAmount() + " €");
-                try {
-                    bank.doOperation(cardnum, cant);
-                } catch (CommunicationException ex) {
-                    Logger.getLogger(PurchaseScreen.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
-                sk.getKiosk().expelCreditCard(2);
-                context.newOrder();
-                WelcomeScreen ws = new WelcomeScreen();
-                ws.show(context);
+                    
+                    try {
+                        this.bank.doOperation(cardnum, cant);
+                    } catch (CommunicationException ex) {
+                        Logger.getLogger(PurchaseScreen.class.getName()).log(Level.SEVERE, 
+                            "Error durante la operación bancaria: CardNum=" + cardnum + ", Cantidad=" + cant, ex);
+                        // Acción alternativa o reintento
+                        System.err.println("No se pudo procesar el pago. Intente nuevamente.");
+                    }
+
+                    sk.getKiosk().expelCreditCard(2);
+                    context.newOrder();
+                    context.newKiosk();
+                    WelcomeScreen ws = new WelcomeScreen();
+                    ws.show(context);
                 }
             }
+        }
+        else{
+            System.out.println("Comunicacion imposible");
+
         }
         
         return this;
@@ -87,8 +101,12 @@ public class PurchaseScreen implements KioskScreen{
             int lastModifiedHour = Integer.parseInt(timeFormat.format(lastModDate));
             int currentHour = Integer.parseInt(timeFormat.format(new Date()));
             
+            System.out.println(currentHour);
+            
             //entra si se ha modificado el dia anterior y si estamos en un nuevo dia
             if (lastModifiedHour < 5 && currentHour > 5){
+                
+                System.out.println("Escribiendo en uno nuevo");
                 //Cambiamos el nombre al archivo
                 String newFileName = "order_file_" + dateFormat.format(lastModDate) + ".txt";
                 File renamedFile = new File(file.getParent(), newFileName);
@@ -98,14 +116,16 @@ public class PurchaseScreen implements KioskScreen{
                 
                 //Creamos el writer para escribir en el nuevo archivo                
                 try (FileWriter writer = new FileWriter(newFile)) {
-                    writer.write(context.getOrderNumber() + " - "+ context.getOrder().getOrderText() + " - " + context.getOrder().getTotalAmount() + " € ");
+                    writer.write("\n" + context.getOrderNumber() + " - "+ context.getOrder().getOrderText() + " - " + context.getOrder().getTotalAmount() + " € \n");
                 }
                 
             //Entra si el archivo ha sido modificado por ultima vez hoy    
             }else{
+                System.out.println("Escribiendo en uno existente");
+
                 
                 //Creamos el writer para escribir en nuestro archivo
-                try (FileWriter writer = new FileWriter(file)) {
+                try (FileWriter writer = new FileWriter(file, true)) {
                     writer.write(context.getOrderNumber() + " - "+ context.getOrder().getOrderText() + " - " + context.getOrder().getTotalAmount() + " € ");
                 }
                 

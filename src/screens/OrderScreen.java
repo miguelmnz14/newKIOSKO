@@ -25,23 +25,23 @@ public class OrderScreen implements KioskScreen{
         System.out.println(respuestaInterfaz);
         
         switch (respuestaInterfaz){
-            case 'B':
+            case 'B' -> {
                 MenuScreen ms = new MenuScreen();
                 ms.show(context);
-                break;
-            case 'C':
+            }
+            case 'C' -> {
                 SectionScreen sect = new SectionScreen();
                 sect.show(context);
-                break;
-            case 'D':
+            }
+            case 'D' -> {
                 PurchaseScreen ps = new PurchaseScreen();
                 ps.show(context);
-                break;
-            case 'E':
+            }
+            case 'E' -> {
                 context.nextOrder();
                 WelcomeScreen welcome = new WelcomeScreen();
                 welcome.show(context);
-                break;
+            }
         }
                 
         

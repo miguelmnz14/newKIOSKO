@@ -46,6 +46,12 @@ public class MenuScreen extends CarouselScreen{
                 
             }
             case 'F' -> {
+                //revisar
+                if (this.section == 0){
+                    OrderScreen os = new OrderScreen();
+                    os.show(context);
+                }
+                this.section -= 1;
                 MenuScreen ms1 = new MenuScreen();
                 ms1.show(context);
             }

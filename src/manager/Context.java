@@ -79,6 +79,10 @@ public class Context {
         this.order = new Order();
     }
     
+    public void newKiosk(){
+        this.kiosk = new SimpleKiosk();
+    }
+    
     
 
     
