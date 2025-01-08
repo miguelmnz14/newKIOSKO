@@ -69,11 +69,14 @@ public class MenuScreen extends CarouselScreen{
         
         return this;
     }
-    
+    //Configuracion de los botones de la pantalla
     public void configureScreenButtons(SimpleKiosk disp, Context context){
         disp.getKiosk().setOption(4, context.getTranslator().translate("order.add_item"));
         disp.getKiosk().setOption(5, context.getTranslator().translate("menuOrder.go_back"));
     } 
+    
+    //Método para configurar los botones del carrusel
+    @Override
     protected void adjustCarruselButtons(int currentElement, int numberOfElements, SimpleKiosk dispen){
         boolean first = currentElement == 0;
         boolean last = currentElement == numberOfElements -1;

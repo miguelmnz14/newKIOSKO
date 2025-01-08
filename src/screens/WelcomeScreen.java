@@ -33,7 +33,7 @@ public class WelcomeScreen implements KioskScreen{
     }
     
     
-    
+    //Configuracion de los botones de la pantalla
     private void configureScreenButtons(SimpleKiosk dispen, Context context) {
         dispen.getKiosk().setOption(1, context.getTranslator().translate("menu.new_order"));
         dispen.getKiosk().setOption(4, context.getTranslator().translate("menu.change_language"));

@@ -73,16 +73,16 @@ public class PurchaseScreen implements KioskScreen{
         
         return this;
     }
-    
+    //Configuracion de los botones de la pantalla
     private void configureScreenButtons(SimpleKiosk s, Context context){
         s.getKiosk().setOption(1, context.getTranslator().translate("order.cancel"));
         s.getKiosk().setOption(2, context.getTranslator().translate("payment.cancel"));
     }
-    
+    //Método para incrementar el numero de pedido
     private void incrementOrderNumber(Context context){
         context.nextOrder();
     }
-    
+    // Método para escribir en el fichero los pedidos realizados
     private synchronized void writerOrderToFile(Context context){
         File file = new File("C:/Users/Miguel/Desktop/Kiosko/order_file.txt");
         

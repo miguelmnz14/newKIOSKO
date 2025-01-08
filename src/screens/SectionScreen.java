@@ -48,6 +48,7 @@ public class SectionScreen extends CarouselScreen{
         return this;
     }
     
+    //Configuracion de los botones de la pantalla
     public void configureScreenButtons(SimpleKiosk disp, Context context){
         disp.getKiosk().setOption(4, context.getTranslator().translate("order.advance"));
         disp.getKiosk().setOption(5, context.getTranslator().translate("order.cancel"));

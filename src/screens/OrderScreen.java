@@ -48,7 +48,7 @@ public class OrderScreen implements KioskScreen{
         
         return this;
     }
-    
+    //Configuracion de los botones de la pantalla
     public void configureScreenButtons(SimpleKiosk dispen, Context context){
         dispen.getKiosk().setOption(1, context.getTranslator().translate("order.add_menu"));
         dispen.getKiosk().setOption(2, context.getTranslator().translate("order.add_item"));

@@ -12,7 +12,7 @@ public class MenuCardSection {
     private List<IndividualProduct> productList;
     private int current;
     
-    
+    //Método para obtener un producto especifico
     public IndividualProduct getProduct(int i){ // Funcion que devuelve el productoIndividual de mi lista 
         if ( i < 0 || i >= productList.size())
         {
@@ -37,6 +37,7 @@ public class MenuCardSection {
         this.current -= 1;
     }
     
+    //Método para obtener el numero de productos
     public int getNumberOfProducts(){
      if (this.productList == null)
      {
@@ -51,7 +52,7 @@ public class MenuCardSection {
     public String getImageFileName() {
         return imageFileName;
     }
-
+    
     public MenuCardSection(String sectionName, String imageFileName, List<IndividualProduct> productList) {
         this.sectionName = sectionName;
         this.imageFileName = imageFileName;

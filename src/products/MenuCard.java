@@ -20,7 +20,7 @@ public class MenuCard {
     private int current;
     
     
-    
+    //Método para obtener el MenuCardSection de la seccion que pasamos por parametro
     public MenuCardSection getSection(int index){
         if (index < 0 || index >= this.sectionList.size())
         {
@@ -30,8 +30,8 @@ public class MenuCard {
         
     }
     
-    
-    public int getNumberOfSections(){ // No se si este metodo hace lo que tiene que hacer que es devolver el numero de elementos que hay en sectionList
+    //Método para obtener el numero de secciones
+    public int getNumberOfSections(){
         if (sectionList == null)
         {
             return 0;
@@ -41,7 +41,7 @@ public class MenuCard {
             return sectionList.size();
         }
     }
-    
+    //Método para deserializar el xml 
     public static MenuCard deserializeMenuCard() {
         MenuCard menu = null;
         try {
@@ -58,6 +58,7 @@ public class MenuCard {
         
     }
 
+    //Método constructor
     public MenuCard(List<MenuCardSection> sectionList) {
         this.sectionList = sectionList;
     }
