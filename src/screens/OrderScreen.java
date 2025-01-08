@@ -39,6 +39,7 @@ public class OrderScreen implements KioskScreen{
             }
             case 'E' -> {
                 context.nextOrder();
+                context.newOrder();
                 WelcomeScreen welcome = new WelcomeScreen();
                 welcome.show(context);
             }
