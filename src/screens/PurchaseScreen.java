@@ -64,6 +64,15 @@ public class PurchaseScreen implements KioskScreen{
                     WelcomeScreen ws = new WelcomeScreen();
                     ws.show(context);
                 }
+                case 'B' ->{
+                    context.newOrder();
+                    OrderScreen os = new OrderScreen();
+                    os.show(context);
+                }
+                case 'C'->{
+                    OrderScreen os = new OrderScreen();
+                    os.show(context);
+                }
             }
         }
         else{
@@ -116,7 +125,7 @@ public class PurchaseScreen implements KioskScreen{
                 
                 //Creamos el writer para escribir en el nuevo archivo                
                 try (FileWriter writer = new FileWriter(newFile)) {
-                    writer.write("\n" + context.getOrderNumber() + " - "+ context.getOrder().getOrderText() + " - " + context.getOrder().getTotalAmount() + " € \n");
+                    writer.write(context.getOrderNumber() + " - "+ context.getOrder().getOrderText() + " - " + context.getOrder().getTotalAmount() + " € \n");
                 }
                 
             //Entra si el archivo ha sido modificado por ultima vez hoy    

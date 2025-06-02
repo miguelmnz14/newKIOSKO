@@ -19,8 +19,8 @@ public class OrderScreen implements KioskScreen{
         dispenser.clear();
         dispenser.getKiosk().setTitle(context.getTranslator().translate("order.title"));
         dispenser.getKiosk().setImage("Pedido.png");
-        dispenser.getKiosk().setDescription(context.getTranslator().translate("order.description") + context.getOrderNumber() + context.getOrder().getOrderText() + context.getTranslator().translate("total_amount") + context.getOrder().getTotalAmount());
-        this.configureScreenButtons(dispenser, context);
+        dispenser.getKiosk().setDescription(context.getTranslator().translate("order.description") + " " + context.getOrderNumber() + " " + context.getOrder().getOrderText() + "\n" + context.getTranslator().translate("total_amount") + " " + context.getOrder().getTotalAmount());
+        this.configureScreenButtons(dispenser, context); 
         char respuestaInterfaz = dispenser.getKiosk().waitEvent(waitTime);
         System.out.println(respuestaInterfaz);
         

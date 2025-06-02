@@ -11,8 +11,9 @@ public class Order {
     public int getOrderNumber() {
         return orderNumber;
     }
-
-    public String getOrderText(){ // Funcion que muestra el nombre de los productos que tiene un pedido
+    
+    //Método para obtener la descripcion de cada pedido
+    public String getOrderText(){ 
         if (products == null || products.isEmpty()){
             return "\n- No products in this order\n";
         }
@@ -26,7 +27,8 @@ public class Order {
         }
         return " \n-Products: " + productList;
     }
-
+    
+    //Método para obtener el coste de cada pedido
     public int getTotalAmount(){
         int totalAmount = 0;
         if (this.products == null){
@@ -37,6 +39,8 @@ public class Order {
         }
         return totalAmount;
     }
+    
+    //Método para agregar un producto al array
     public void addProduct(Product p){
         if (this.products == null)
         {

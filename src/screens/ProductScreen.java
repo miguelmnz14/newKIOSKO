@@ -33,6 +33,7 @@ public class ProductScreen extends CarouselScreen{
         dispenser.getKiosk().setImage("C:/Users/Miguel/Desktop/Kiosko/build/classes/" + prod.getProduct(currentProduct).getImageFileName());
         dispenser.getKiosk().setDescription(context.getMenuCard().getSection(section).getProduct(currentProduct).getDescription());
         char respuestaInterfaz = dispenser.getKiosk().waitEvent(waitTime);
+        System.out.println(respuestaInterfaz);
         
         switch (respuestaInterfaz){
             case 'E':

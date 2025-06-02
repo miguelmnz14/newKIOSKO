@@ -42,6 +42,10 @@ public class Context {
         this.kioskNumber -= 1;
     }
     
+    public void originalKiosk(){
+        this.kioskNumber = 0;
+    }
+    
     public void nextKiosk(){
         this.kioskNumber += 1;
     }

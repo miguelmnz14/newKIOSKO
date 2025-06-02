@@ -31,6 +31,7 @@ public class MenuScreen extends CarouselScreen{
         this.adjustCarruselButtons(currentProduct, context.getMenuCard().getSection(section).getNumberOfProducts(), dispenser);
 
         char respuestaInterfaz = dispenser.getKiosk().waitEvent(waitTime);
+        System.out.println(respuestaInterfaz);
         
         switch (respuestaInterfaz){
             case 'E' -> {
@@ -46,14 +47,19 @@ public class MenuScreen extends CarouselScreen{
                 
             }
             case 'F' -> {
-                //revisar
+               
                 if (this.section == 0){
                     OrderScreen os = new OrderScreen();
                     os.show(context);
+                }else{
+                    context.originalKiosk();
+                    context.newOrder();
+                    MenuScreen ms1 = new MenuScreen();
+                    ms1.show(context);
                 }
-                this.section -= 1;
-                MenuScreen ms1 = new MenuScreen();
-                ms1.show(context);
+                
+                
+                
             }
             case 'G' -> {
                 context.getMenuCard().getSection(section).previousProd();

@@ -46,7 +46,7 @@ public class MenuCard {
         MenuCard menu = null;
         try {
             XMLDecoder decoder = new XMLDecoder(
-                                                new FileInputStream("src/Catalog.xml"));
+                                                new FileInputStream("test/Catalog.xml"));
             menu = (MenuCard) decoder.readObject();
             decoder.close();
             
