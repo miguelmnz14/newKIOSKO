@@ -4,6 +4,7 @@
  */
 package screens;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -22,6 +23,7 @@ import urjc.UrjcBankServer;
  */
 public class PurchaseScreen implements KioskScreen{
     private UrjcBankServer bank = new UrjcBankServer();
+    
     @Override
     public KioskScreen show(Context context){
         SimpleKiosk sk = context.getKiosk();
@@ -73,6 +75,20 @@ public class PurchaseScreen implements KioskScreen{
                     OrderScreen os = new OrderScreen();
                     os.show(context);
                 }
+                case 'D'->{
+                    try (BufferedWriter writer = new BufferedWriter(new FileWriter("Archivo"+context.getOrderNumber()))) {
+                        writer.write(" TICKET DE COMPRA\n -------------- \n" + context.getOrder().getOrderText() + " " + context.getOrder().getTotalAmount() +  " Pague en caja por favor :) ");
+                        System.out.println("Archivo creado y escrito correctamente.");
+                        
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    context.newOrder();
+                    this.writerOrderToFile(context);
+                    this.incrementOrderNumber(context);
+                    WelcomeScreen ws = new WelcomeScreen();
+                    ws.show(context);
+                }
             }
         }
         else{
@@ -86,6 +102,7 @@ public class PurchaseScreen implements KioskScreen{
     private void configureScreenButtons(SimpleKiosk s, Context context){
         s.getKiosk().setOption(1, context.getTranslator().translate("order.cancel"));
         s.getKiosk().setOption(2, context.getTranslator().translate("payment.cancel"));
+        s.getKiosk().setOption(3, context.getTranslator().translate("payment.cash"));
     }
     //Método para incrementar el numero de pedido
     private void incrementOrderNumber(Context context){

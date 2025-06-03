@@ -2,3 +2,34 @@
 -Products: COCA COLA NORMAL - 150 € 
 0 -  
 -Products: ANGUS,ANGUS,ANGUS,COCA COLA NORMAL,ALITAS,ALITAS - 4750 € 
+0 -  
+-Products: ANGUS - 2000 € 
+1 -  
+-Products: POLLO,CERVEZA,OREO,OREO - 2000 € 
+0 -  
+-Products: ANGUS - 2000 € 
+0 -  
+-Products: ANGUS - 2000 € 
+0 -  
+-Products: CERVEZA - 200 € 
+0 - 
+- No products in this order
+ - 0 € 
+1 - 
+- No products in this order
+ - 0 € 
+0 - 
+- No products in this order
+ - 0 € 
+1 - 
+- No products in this order
+ - 0 € 
+2 - 
+- No products in this order
+ - 0 € 
+0 - 
+- No products in this order
+ - 0 € 
+1 - 
+- No products in this order
+ - 0 € 
