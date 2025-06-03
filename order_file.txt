@@ -1,8 +1,4 @@
 0 -  
--Products: ANGUS - 2000 € 0 -  
--Products: ANGUS - 2000 € 1 -  
--Products: ANGUS - 2000 € 2 -  
--Products: ANGUS - 2000 € 0 -  
--Products: ANGUS - 2000 € 0 -  
--Products: ANGUS - 2000 € 0 -  
--Products: ANGUS - 2000 € 
+-Products: COCA COLA NORMAL - 150 € 
+0 -  
+-Products: ANGUS,ANGUS,ANGUS,COCA COLA NORMAL,ALITAS,ALITAS - 4750 € 

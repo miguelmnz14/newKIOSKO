@@ -60,7 +60,7 @@ public class PurchaseScreen implements KioskScreen{
 
                     sk.getKiosk().expelCreditCard(2);
                     context.newOrder();
-                    context.newKiosk();
+                    //context.newKiosk();
                     WelcomeScreen ws = new WelcomeScreen();
                     ws.show(context);
                 }
@@ -135,7 +135,7 @@ public class PurchaseScreen implements KioskScreen{
                 
                 //Creamos el writer para escribir en nuestro archivo
                 try (FileWriter writer = new FileWriter(file, true)) {
-                    writer.write(context.getOrderNumber() + " - "+ context.getOrder().getOrderText() + " - " + context.getOrder().getTotalAmount() + " € ");
+                    writer.write(context.getOrderNumber() + " - "+ context.getOrder().getOrderText() + " - " + context.getOrder().getTotalAmount() + " € \n");
                 }
                 
                 

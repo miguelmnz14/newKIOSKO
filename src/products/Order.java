@@ -35,17 +35,21 @@ public class Order {
         if (this.products == null){
             return 0;
         }
-        for (Product p : products){
-            if (totalAmount==0 || !listAux.contains(p)){
+        int contprod;
+        for (Product p: this.products){
+            if (!listAux.contains(p)){
                 listAux.add(p);
-                int contProduct = numSamePro(p);
                 totalAmount += p.getPrice();
-                while(contProduct != 0){
-                    totalAmount += (p.getPrice()/2);
-                    contProduct --;
+                               
+            }else{
+                contprod = numSamePro(p,listAux);
+                for (int i=0; i < contprod; i++){
+                    totalAmount += p.getPrice()/2;
                 }
+                
             }
         }
+        
         return totalAmount;
     }
     
@@ -62,9 +66,9 @@ public class Order {
     public boolean isSameProduct(Product p1, Product p2){
         return(p1.getName().equals(p2.getName()));
     }
-    public int numSamePro(Product p1){
+    public int numSamePro(Product p1, List<Product> aux){
         int cont =0;
-        for (Product p2 : products){
+        for (Product p2 : aux){
             if (isSameProduct(p1,p2)){
                 cont ++;
             }
