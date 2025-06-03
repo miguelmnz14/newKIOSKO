@@ -31,11 +31,20 @@ public class Order {
     //Método para obtener el coste de cada pedido
     public int getTotalAmount(){
         int totalAmount = 0;
+        List<Product> listAux = new ArrayList<>();
         if (this.products == null){
             return 0;
         }
         for (Product p : products){
-            totalAmount += p.getPrice();
+            if (totalAmount==0 || !listAux.contains(p)){
+                listAux.add(p);
+                int contProduct = numSamePro(p);
+                totalAmount += p.getPrice();
+                while(contProduct != 0){
+                    totalAmount += (p.getPrice()/2);
+                    contProduct --;
+                }
+            }
         }
         return totalAmount;
     }
@@ -50,6 +59,20 @@ public class Order {
         this.products.add(p);
         
     }
+    public boolean isSameProduct(Product p1, Product p2){
+        return(p1.getName().equals(p2.getName()));
+    }
+    public int numSamePro(Product p1){
+        int cont =0;
+        for (Product p2 : products){
+            if (isSameProduct(p1,p2)){
+                cont ++;
+            }
+        }
+        return cont;
+    }
+    
+    
 
 
 }
