@@ -89,6 +89,7 @@ public class PurchaseScreen implements KioskScreen{
                     WelcomeScreen ws = new WelcomeScreen();
                     ws.show(context);
                 }
+                
             }
         }
         else{
