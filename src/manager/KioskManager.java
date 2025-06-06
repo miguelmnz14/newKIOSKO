@@ -18,10 +18,11 @@ public class KioskManager {
         SimpleKiosk kiosko = new SimpleKiosk();
         Context contexto = new Context(
             kiosko,
-            new TranslatorManager(),
+            new TranslatorManager("C:/Users/Miguel/Desktop/Kiosko/idiomas"),
             new Order(),
             menuCard.deserializeMenuCard()
         );
+        contexto.getTranslator().setCurrentIdiom("espanol");
         WelcomeScreen screen = new WelcomeScreen();
         screen.show(contexto);
         

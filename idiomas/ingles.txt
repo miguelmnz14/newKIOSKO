@@ -1,0 +1,17 @@
+app.title=URJC Burger - Welcome
+menu.new_order=New Order
+total_amount=Total amount: 
+menu.change_language=Change Language
+menu.select_language=Select Language
+menu.language_description=Change the app's language.
+order.title=What would you like to do?
+order.add_menu=Add menu to order
+order.add_item=Add individual item to order
+order.remove_item=Remove item
+order.finish=Finish order
+order.cancel=Cancel order
+payment.cancel=Cancel payment
+order.description=ORDER :
+order.advance=Advance
+menuOrder.go_back=Go back
+payment.cash=cash payment

@@ -1,0 +1,17 @@
+app.title=URJC Burger - Bienvenido
+menu.new_order=Nuevo pedido
+total_amount=Total a pagar: 
+menu.change_language=Cambiar idioma
+menu.select_language=Seleccione idioma
+menu.language_description=Cambie el idioma de la aplicación.
+order.title=¿Qué quieres hacer?
+order.add_menu=Añadir menú al pedido
+order.add_item=Añadir producto individual a pedido
+order.remove_item=Eliminar producto
+order.finish=Terminar pedido
+order.cancel=Cancelar pedido
+payment.cancel=Cancelar pago
+order.description=PEDIDO :
+order.advance=Seleccionar
+menuOrder.go_back=Volver
+payment.cash=Pago en efectivo

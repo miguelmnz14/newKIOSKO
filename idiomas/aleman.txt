@@ -1,0 +1,17 @@
+app.title=URJC Burger - Willkommen
+menu.new_order=Neue Bestellung
+total_amount=Gesamtbetrag: 
+menu.change_language=Sprache ändern
+menu.select_language=Sprache auswählen
+menu.language_description=Sprache der App ändern.
+order.title=Was möchten Sie tun?
+order.add_menu=Menü zur Bestellung hinzufügen
+order.add_item=Einzelnes Produkt zur Bestellung hinzufügen
+order.remove_item=Artikel entfernen
+order.finish=Bestellung abschließen
+order.cancel=Bestellung stornieren
+payment.cancel=Zahlung stornieren
+order.description=BESTELLUNG :
+order.advance=Vorauszahlung
+menuOrder.go_back=Geh zurück
+payment.cash=Barzahlung

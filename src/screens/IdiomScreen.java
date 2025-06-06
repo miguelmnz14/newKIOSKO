@@ -2,6 +2,7 @@ package screens;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import manager.Context;
 import manager.SimpleKiosk;
 
@@ -20,11 +21,11 @@ public class IdiomScreen implements KioskScreen{
 
         // Cambiar idioma según selección
         if (respuestaInterfaz == 'A') {
-            context.getTranslator().setCurrentIdiom("Espanol");
+            context.getTranslator().setCurrentIdiom("espanol");
         } else if (respuestaInterfaz == 'B') {
-            context.getTranslator().setCurrentIdiom("Ingles");
+            context.getTranslator().setCurrentIdiom("ingles");
         } else if (respuestaInterfaz == 'C') {
-            context.getTranslator().setCurrentIdiom("Aleman");
+            context.getTranslator().setCurrentIdiom("aleman");
         }
         WelcomeScreen welcomeScreen = new WelcomeScreen();
         welcomeScreen.show(context);
@@ -33,6 +34,7 @@ public class IdiomScreen implements KioskScreen{
 
     
     public void configureScreenButtons(SimpleKiosk dispen, Context contexto) {
+        //ArrayList <String> idiomas = (ArrayList <String>) (contexto.getTranslator().getIdioms());
         dispen.getKiosk().setOption(0, "Español");
         dispen.getKiosk().setOption(1, "English");
         dispen.getKiosk().setOption(2, "Deutsch");

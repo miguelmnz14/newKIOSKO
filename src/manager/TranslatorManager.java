@@ -4,6 +4,7 @@
  */
 package manager;
 
+import java.io.File;
 import manager.Translator;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,7 +19,7 @@ import java.util.ResourceBundle;
  */
 public class TranslatorManager {
     private Translator currentDictionary;
-    private Map<String, Translator> dictionaries;
+    private Map<String, Translator> dictionaries = new HashMap<>();
     
     private Locale currentLocale = new Locale("es", "ES"); // Idioma por defecto: Español
     private ResourceBundle messages = ResourceBundle.getBundle("demo.messages", currentLocale);
@@ -28,20 +29,22 @@ public class TranslatorManager {
         messages = ResourceBundle.getBundle("messages", currentLocale);
     }
     
-    public TranslatorManager(){
-        dictionaries = new HashMap<>();
-        dictionaries.put("Espanol", new Translator("demo/messages_es.properties"));
-        dictionaries.put("Ingles", new Translator("demo/messages_en.properties"));
-        dictionaries.put("Aleman", new Translator("demo/messages_ge.properties"));
-        currentDictionary = new Translator("demo/messages_es.properties");
+    public TranslatorManager(String rutaDirectorio){
+        File directorio = new File(rutaDirectorio);
+        
+        if(directorio.exists() && directorio.isDirectory()){
+            File [] ficheros = directorio.listFiles();
+            for(File fich: ficheros){
+                Translator nuevoTranslator = new Translator(fich.getPath());
+                String nombreDelDic = fich.getName().substring(0, fich.getName().length()-4);
+                dictionaries.put(nombreDelDic, nuevoTranslator);
+            }
+        }
 
     }
     
     public void setCurrentIdiom(String idiom){
-        currentDictionary = dictionaries.get(idiom);
-        if (currentDictionary == null){
-            throw new IllegalArgumentException("Idioma no encontrado: " + idiom);
-        }
+        this.currentDictionary = this.dictionaries.get(idiom);
     }
 
     public Translator getCurrentDictionary() {

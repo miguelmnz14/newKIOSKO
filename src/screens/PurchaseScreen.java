@@ -9,7 +9,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.CommunicationException;
@@ -30,10 +32,10 @@ public class PurchaseScreen implements KioskScreen{
         
         sk.getKiosk().setMenuMode();
         sk.clear();
-        final int waitTime = 300;
+        final int waitTime = 3000;
         this.configureScreenButtons(sk, context);
-        long cardnum = sk.getKiosk().getCardNumber();
-        System.out.println(cardnum);
+        long cardnum;
+       
 
         
         if (this.bank.comunicationAvaiable()){
@@ -41,6 +43,7 @@ public class PurchaseScreen implements KioskScreen{
             int cant = context.getOrder().getTotalAmount();
             sk.getKiosk().setDescription(String.format("Introduzca tarjeta para comprar %s por %d €", desc, cant));
             //Fallo aqui abajo
+            cardnum = sk.getKiosk().getCardNumber();
             char RespuestaInterfaz = sk.getKiosk().waitEvent(waitTime);          
             System.out.println(RespuestaInterfaz);
             
@@ -49,20 +52,18 @@ public class PurchaseScreen implements KioskScreen{
                 case '1' -> {
                     this.writerOrderToFile(context);
                     this.incrementOrderNumber(context);
-                    System.out.println(context.getOrder().getOrderText() + " - Total " + context.getOrder().getTotalAmount() + " €");
                     
-                    try {
-                        this.bank.doOperation(cardnum, cant);
-                    } catch (CommunicationException ex) {
-                        Logger.getLogger(PurchaseScreen.class.getName()).log(Level.SEVERE, 
-                            "Error durante la operación bancaria: CardNum=" + cardnum + ", Cantidad=" + cant, ex);
-                        // Acción alternativa o reintento
-                        System.err.println("No se pudo procesar el pago. Intente nuevamente.");
-                    }
-
-                    sk.getKiosk().expelCreditCard(2);
+                    List <String> ticket = new ArrayList ();
+                    ticket.add(context.getOrder().getOrderText() + " - Total " + context.getOrder().getTotalAmount() + " €");
+                    sk.getKiosk().print(ticket);
                     context.newOrder();
-                    //context.newKiosk();
+                    try {
+                        if (this.bank.doOperation(cardnum, cant)){
+                            sk.getKiosk().expelCreditCard(120);
+                        }
+                    } catch (CommunicationException ex) {
+                        Logger.getLogger(PurchaseScreen.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     WelcomeScreen ws = new WelcomeScreen();
                     ws.show(context);
                 }
@@ -76,13 +77,9 @@ public class PurchaseScreen implements KioskScreen{
                     os.show(context);
                 }
                 case 'D'->{
-                    try (BufferedWriter writer = new BufferedWriter(new FileWriter("Archivo"+context.getOrderNumber()))) {
-                        writer.write(" TICKET DE COMPRA\n -------------- \n" + context.getOrder().getOrderText() + " " + context.getOrder().getTotalAmount() +  " Pague en caja por favor :) ");
-                        System.out.println("Archivo creado y escrito correctamente.");
-                        
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    List <String> ticket = new ArrayList ();
+                    ticket.add(context.getOrder().getOrderText() + " - Total " + context.getOrder().getTotalAmount() + " €");
+                    sk.getKiosk().print(ticket);
                     context.newOrder();
                     this.writerOrderToFile(context);
                     this.incrementOrderNumber(context);
