@@ -1,5 +1,8 @@
 package screens;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import javax.swing.*;
 import manager.Context;
 import manager.SimpleKiosk;
@@ -17,6 +20,21 @@ public class WelcomeScreen implements KioskScreen{
         dispenser.getKiosk().setMenuMode();
         dispenser.getKiosk().setTitle(context.getTranslator().translate("app.title"));
         dispenser.getKiosk().setImage("Logo.png");
+        
+        int orderNumber;
+        String ruta = "test/OrderNumber.txt";
+        try (BufferedReader br = new BufferedReader(new FileReader(ruta))) {
+            String linea = br.readLine();
+            long numero = Long.parseLong(linea);
+            orderNumber = (int) numero;
+            context.setOrderNumber(orderNumber);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (NumberFormatException e) {
+            System.out.println("El contenido del archivo no es un número válido.");
+        }
+        
+        
         this.configureScreenButtons(dispenser, context);
         char respuestaInterfaz = dispenser.getKiosk().waitEvent(waitTime);
         System.out.println(respuestaInterfaz);

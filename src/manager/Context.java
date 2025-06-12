@@ -4,6 +4,10 @@
  */
 package manager;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import products.MenuCard;
 import products.Order;
 import java.util.ArrayList;
@@ -67,6 +71,11 @@ public class Context {
         return order;
     }
 
+    public void setOrderNumber(int orderNumber) {
+        this.orderNumber = orderNumber;
+    }
+    
+
     public MenuCard getMenuCard() {
         return menuCard;
     }
@@ -89,7 +98,27 @@ public class Context {
     
     
 
-    
+    public void nextOrderFile(){
+        int orderNumber;
+                String ruta = "test/OrderNumber.txt";
+                try {
+                    // Leer el número del archivo
+                    String content = new String(Files.readAllBytes(Paths.get(ruta)));
+                    orderNumber = Integer.parseInt(content.trim());
+                    orderNumber++;
+
+                    // Escribir el nuevo número
+                    Files.write(
+                        Paths.get(ruta),
+                        String.valueOf(orderNumber).getBytes(),
+                        StandardOpenOption.TRUNCATE_EXISTING,
+                        StandardOpenOption.CREATE // Añade CREATE por si el archivo no existe
+                    );
+                } catch (IOException | NumberFormatException e) {
+                    System.out.println("Error al leer o escribir el número: " + e.getMessage());
+                    e.printStackTrace(); // Esto te dará más información del error
+                }
+    }
     
     
     
