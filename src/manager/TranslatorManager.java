@@ -20,14 +20,7 @@ import java.util.ResourceBundle;
 public class TranslatorManager {
     private Translator currentDictionary;
     private Map<String, Translator> dictionaries = new HashMap<>();
-    
-    private Locale currentLocale = new Locale("es", "ES"); // Idioma por defecto: Español
-    private ResourceBundle messages = ResourceBundle.getBundle("demo.messages", currentLocale);
-    
-    private void loadLanguage(String languageCode, String countryCode) {
-        currentLocale = new Locale(languageCode, countryCode);
-        messages = ResourceBundle.getBundle("messages", currentLocale);
-    }
+    private int numIdioms;
     
     public TranslatorManager(String rutaDirectorio){
         File directorio = new File(rutaDirectorio);
@@ -36,11 +29,13 @@ public class TranslatorManager {
             File [] ficheros = directorio.listFiles();
             for(File fich: ficheros){
                 Translator nuevoTranslator = new Translator(fich.getPath());
+                
                 String nombreDelDic = fich.getName().substring(0, fich.getName().length()-4);
                 dictionaries.put(nombreDelDic, nuevoTranslator);
+                this.numIdioms++;
             }
         }
-
+    
     }
     
     public void setCurrentIdiom(String idiom){
@@ -50,6 +45,11 @@ public class TranslatorManager {
     public Translator getCurrentDictionary() {
         return currentDictionary;
     }
+
+    public int getNumIdioms() {
+        return numIdioms;
+    }
+    
     
     
     public List<String> getIdioms(){
