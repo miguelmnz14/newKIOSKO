@@ -21,15 +21,6 @@ public class IdiomScreen implements KioskScreen{
         int indice = respuestaInterfaz - 'A';
         
         context.getTranslator().setCurrentIdiom(context.getTranslator().getIdioms().get(indice));
-        
-        // Cambiar idioma según selección
-        /*if (respuestaInterfaz == 'A') {
-            context.getTranslator().setCurrentIdiom("espanol");
-        } else if (respuestaInterfaz == 'B') {
-            context.getTranslator().setCurrentIdiom("ingles");
-        } else if (respuestaInterfaz == 'C') {
-            context.getTranslator().setCurrentIdiom("aleman");
-        }*/
         WelcomeScreen welcomeScreen = new WelcomeScreen();
         welcomeScreen.show(context);
         return this;

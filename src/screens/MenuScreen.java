@@ -39,7 +39,7 @@ public class MenuScreen extends CarouselScreen{
                 if (this.section + 1 >= context.getMenuCard().getNumberOfSections()){
                     context.originalKiosk();
                     OrderScreen os = new OrderScreen();
-                    os.show(context);
+                    os.show(context);  
                 } else{
                     context.nextKiosk();
                     MenuScreen ms = new MenuScreen();

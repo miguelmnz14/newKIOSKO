@@ -82,4 +82,10 @@ public class ProductScreen extends CarouselScreen{
             dispen.getKiosk().setOption(7, "&gt;");
         }
     }
+
+    public void setSection(int section) {
+        this.section = section;
+    }
+    
+    
 }

@@ -170,3 +170,33 @@
 -Products: ANGUS - 2000 € 
 34 -  
 -Products: ANGUS - 2000 € 
+35 -  
+-Products: ANGUS - 2000 € 
+36 -  
+-Products: ANGUS - 2000 € 
+37 -  
+-Products: ANGUS - 2000 € 
+38 -  
+-Products: ANGUS,COCA COLA NORMAL,ALITAS - 2550 € 
+40 -  
+-Products: ANGUS - 2000 € 
+41 -  
+-Products: ANGUS - 2000 € 
+42 -  
+-Products: ANGUS,POLLO - 3500 € 
+43 -  
+-Products: ANGUS,ANGUS - 3000 € 
+44 -  
+-Products: ANGUS - 2000 € 
+45 -  
+-Products: ANGUS - 2000 € 
+46 -  
+-Products: ANGUS - 2000 € 
+47 -  
+-Products: ANGUS - 2000 € 
+49 -  
+-Products: ANGUS - 2000 € 
+50 -  
+-Products: VEGETAL,AGUA,AROS DE CEBOLLA - 1340 € 
+51 -  
+-Products: ANGUS - 2000 € 

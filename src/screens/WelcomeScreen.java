@@ -34,7 +34,6 @@ public class WelcomeScreen implements KioskScreen{
             System.out.println("El contenido del archivo no es un número válido.");
         }
         
-        
         this.configureScreenButtons(dispenser, context);
         char respuestaInterfaz = dispenser.getKiosk().waitEvent(waitTime);
         System.out.println(respuestaInterfaz);

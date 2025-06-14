@@ -58,10 +58,17 @@ public class MenuCard {
         
     }
 
+    public void setCurrent(int current) {
+        this.current = current;
+    }
+
+    
     //Método constructor
     public MenuCard(List<MenuCardSection> sectionList) {
         this.sectionList = sectionList;
     }
+    
+    
     
     
 }

@@ -34,7 +34,7 @@ public class PurchaseScreen implements KioskScreen{
         sk.clear();
         final int waitTime = 3000;
         this.configureScreenButtons(sk, context);
-        long cardnum;
+        long cardnum = sk.getKiosk().getCardNumber();
        
 
         
@@ -42,56 +42,55 @@ public class PurchaseScreen implements KioskScreen{
             String desc = context.getOrder().getOrderText();
             int cant = context.getOrder().getTotalAmount();
             sk.getKiosk().setDescription(String.format("Introduzca tarjeta para comprar %s por %d €", desc, cant));
-            //Fallo aqui abajo
-            cardnum = sk.getKiosk().getCardNumber();
+            
             char RespuestaInterfaz = sk.getKiosk().waitEvent(waitTime);
             
             System.out.println(RespuestaInterfaz);
             
             
-            switch (RespuestaInterfaz){
-                case '1' -> {
-                    this.writerOrderToFile(context);
-                    this.incrementOrderNumber(context);
-                    
-                    List <String> ticket = new ArrayList ();
-                    ticket.add(context.getOrder().getOrderNumber() + "\n" + context.getOrder().getOrderText() + " - Total " + context.getOrder().getTotalAmount() + " €");
-                    sk.getKiosk().print(ticket);
-                    
-                    try {
-                        if (this.bank.doOperation(cardnum, cant)){
-                            sk.getKiosk().expelCreditCard(120);
+            switch (RespuestaInterfaz){  
+                    case '1' -> {
+                        this.writerOrderToFile(context);
+                        this.incrementOrderNumber(context);
+
+                        List <String> ticket = new ArrayList ();
+                        ticket.add(context.getOrderNumber() + "\n" + context.getOrder().getOrderText() + " - Total " + context.getOrder().getTotalAmount() + " €");
+                        sk.getKiosk().print(ticket);
+
+                        try {
+                            if (this.bank.doOperation(cardnum, cant)){
+                                sk.getKiosk().expelCreditCard(120);
+                            }
+                        } catch (CommunicationException ex) {
+                            Logger.getLogger(PurchaseScreen.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                    } catch (CommunicationException ex) {
-                        Logger.getLogger(PurchaseScreen.class.getName()).log(Level.SEVERE, null, ex);
+                        context.nextOrderFile();
+                        context.newOrder();
+                        WelcomeScreen ws = new WelcomeScreen();
+                        ws.show(context);
                     }
-                    context.nextOrderFile();
-                    context.newOrder();
-                    WelcomeScreen ws = new WelcomeScreen();
-                    ws.show(context);
-                }
-                case 'B' ->{
-                    context.nextOrderFile();
-                    context.newOrder();
-                    OrderScreen os = new OrderScreen();
-                    os.show(context);
-                }
-                case 'C'->{
-                    context.nextOrderFile();
-                    OrderScreen os = new OrderScreen();
-                    os.show(context);
-                }
-                case 'D'->{
-                    context.nextOrderFile();
-                    List <String> ticket = new ArrayList ();
-                    ticket.add(context.getOrder().getOrderText() + " - Total " + context.getOrder().getTotalAmount() + " €");
-                    sk.getKiosk().print(ticket);
-                    context.newOrder();
-                    this.writerOrderToFile(context);
-                    this.incrementOrderNumber(context);
-                    WelcomeScreen ws = new WelcomeScreen();
-                    ws.show(context);
-                }
+                    case 'B' ->{
+                        context.nextOrderFile();
+                        context.newOrder();
+                        OrderScreen os = new OrderScreen();
+                        os.show(context);
+                    }
+                    case 'C'->{
+                        context.nextOrderFile();
+                        OrderScreen os = new OrderScreen();
+                        os.show(context);
+                    }
+                    case 'D'->{
+                        context.nextOrderFile();
+                        List <String> ticket = new ArrayList ();
+                        ticket.add(context.getOrder().getOrderText() + " - Total " + context.getOrder().getTotalAmount() + " €");
+                        sk.getKiosk().print(ticket);
+                        context.newOrder();
+                        this.writerOrderToFile(context);
+                        this.incrementOrderNumber(context);
+                        WelcomeScreen ws = new WelcomeScreen();
+                        ws.show(context);
+                    }
                 
             }
         }
