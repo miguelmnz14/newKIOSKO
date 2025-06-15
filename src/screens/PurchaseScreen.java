@@ -113,7 +113,7 @@ public class PurchaseScreen implements KioskScreen{
     }
     // Método para escribir en el fichero los pedidos realizados
     private synchronized void writerOrderToFile(Context context){
-        File file = new File("C:/Users/Miguel/Desktop/Kiosko/order_file.txt");
+        File file = new File("test/Order.txt");
         
         try{
             
@@ -137,11 +137,11 @@ public class PurchaseScreen implements KioskScreen{
                 
                 System.out.println("Escribiendo en uno nuevo");
                 //Cambiamos el nombre al archivo
-                String newFileName = "order_file_" + dateFormat.format(lastModDate) + ".txt";
+                String newFileName = "Order" + dateFormat.format(lastModDate) + ".txt";
                 File renamedFile = new File(file.getParent(), newFileName);
                 
                 //Creamos el nuevo archivo
-                File newFile = new File(file.getParent(), "order_file.txt");
+                File newFile = new File(file.getParent(), "Order.txt");
                 
                 //Creamos el writer para escribir en el nuevo archivo                
                 try (FileWriter writer = new FileWriter(newFile)) {
