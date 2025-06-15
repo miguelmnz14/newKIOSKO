@@ -9,21 +9,10 @@ import java.util.List;
 public class Order {
     private int orderNumber;
     private List<Product> products;
-    private int numMenus;
 
 
     public int getOrderNumber() {
         return orderNumber;
-    }
-
-    public int getNumMenus() {
-        return numMenus;
-    }
-    
-    
-    
-    public void incrementNumMenus(){
-        this.numMenus++;
     }
     
     //Método para obtener la descripcion de cada pedido

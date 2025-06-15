@@ -18,7 +18,7 @@ public class KioskManager {
         SimpleKiosk kiosko = new SimpleKiosk();
         Context contexto = new Context(
             kiosko,
-            new TranslatorManager("C:/Users/Miguel/Desktop/Kiosko/idiomas"),
+            new TranslatorManager("test/idioms/"),
             new Order(),
             menuCard.deserializeMenuCard()
         );
